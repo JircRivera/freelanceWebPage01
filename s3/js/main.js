@@ -1,100 +1,7 @@
-var someOtherVar;
-
-var someVar = "Some text";
-var foo = true;
-var someNumber = 9;
-var someFloat = 3.1416;
-var animalsArray = [
-    "Perro",
-    "Gato",
-    "Araña",
-    "León"
-]
-var someMatrix = [
-    [
-        "Perro",
-        "Gato",
-        "Araña",
-        "León"
-    ],
-    [
-        "Mesa",
-        "Silla",
-        "Cama"
-    ]
-]
-
-var studentObject = {
-    name: "Eleonor",
-    lastName: "Peralta Rivera",
-    address: "Some Address",
-    phoneNumber: "5454888548"
-}
-
-var studentsList = [{
-    name: "Eleonor",
-    lastName: "Peralta Rivera",
-    address: "Some Address",
-    phoneNumber: "5454888548"
-}, {
-    name: "Javier",
-    personalData: {
-        lastName: "Medina Bautista",
-        address: "Some Address",
-        phoneNumber: "5454888548",
-    },
-
-    hobbies: [
-        "Videojuegos",
-        "Cine",
-        "Basketball"
-    ],
-
-}]
-
 var purposesDb = firebase.database();
-var purposesReference = firebase.database().ref('purposesCollection/')
-var usersReference = firebase.database().ref('usersCollections/');
+var purposesReference = purposesDb.ref('purposesCollection/')
+var usersReference = purposesDb.ref('usersCollections/');
 var purposesContent;
-
-
-function twoNumberAddtition(number1, number2) {
-    return number1 + number2;
-}
-
-function twoNumberSubstraction(number1, number2) {
-    return number1 - number2;
-}
-
-function compareTwoNumbers(number1, number2) {
-    debugger
-    if (number1 > number2) {
-        alert("El primer número es mayor")
-    } else if (number1 == number2) {
-        alert("los números son iguales")
-    } else {
-        alert("El primer número es menor")
-    }
-}
-
-//= /*asignacion*/
-//== /*comparación*/
-//=== /*extrema comparación*/
-//< /*Menor qué*/
-//> /*Mayor que*/
-//<= /*menor o igual que */
-//>= /*mayor o igual que*/
-//!= /*diferente*/
-//! /*negacion*/
-//!true
-//!false
-
-var animalsArray = [
-    "Perro", /*índice 0*/
-    "Gato", /*índice 1*/
-    "Araña", /*indice 2*/
-    "León" /*indice 3*/
-]
 
 var someElement = $("#some-id");
 
@@ -107,13 +14,11 @@ var someElement = $("#some-id");
 //$("#some-id:hover")
 //someElement.hide();
 
-
 //$(selector).val() /*extraer un valor*/
 //$(selector).val(some value) /*asignar un valor*/
 
 function getFormData() {
     var projectObject = {};
-
     var projectName = $("#project-name").val(); /*getter*/
     var projectDescription = $("#project-description").val();
     var customerMail = $("#customer-mail").val();
@@ -139,11 +44,6 @@ $("#get-purposes").on("click", function () {
     getPurposes();
 })
 
-// $("#profiles-wrapper").on("click", function () {
-//     getProfiles();
-// })
-
-// $("#profiles-wrapper").getProfiles();
 
 var projectArray = [];
 
@@ -166,10 +66,6 @@ var projectPurposeHtml = `<div class="col-lg-3">
 function getPurposes() {
     console.log(purposesContent)
     $("#purposes-wrapper").empty();
-    /*Object.values(purposesContent).forEach(function(value){
-        console.log(value);
-        projectArray.push(value);
-    });*/
     $.each(purposesContent, function (key, value) {
         console.log(value);
         var projectName = value.projectName;
@@ -195,8 +91,6 @@ function getPurposes() {
 }
 
 
-
-
 purposesReference.on('value', function (snapshot) {
     console.log(snapshot.val());
     purposesContent = snapshot.val();
@@ -212,106 +106,6 @@ purposesReference.on('value', function (snapshot) {
     customerName: "new"
 }*/
 
-/**
- * Esta variable guarda la porción de código de cada perfil mostrado en index.html
- */
-var projectProfilesHtml = `<div class="col-12 col-lg-4">
-					<div class="card border-0">
-						<img src="img/profile-pic.jpg" class="card-img-top rounded-circle w-50 mx-auto mt-3 mt-lg-4"
-							alt="...">
-						<div class="card-body">
-							<h2 class="text-info text-center">Israel Salinas Martinez</h2>
-							<p class="card-text font-weight-bold font-italic text-center">Lead teacher @Kodemia</p>
-						</div>
-						<div class="data-wrapper mb-3 w-100">
-							<h4 class="data-title bg-info p-2 text-uppercase">contacto</h4>
-							<p class="text-uppercase font-weight-bold mt-3">55 43 15 78 96 <br> israel@kodemia.mx
-								<br>www.kodemia.mx</p>
-						</div>
-						<div class="data-wrapper mb-3 w-100">
-							<h4 class="data-title bg-info p-2 text-uppercase">social media</h4>
-							<p class="text-uppercase font-weight-bold mt-3">facebook /razieliquibalam<br> twitter
-								@razieliquibalam <br>instagram @razieliquibalam</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-lg-8 bg-info ">
-					<div class="data-wrapper mb-3 mx-auto mt-3 mt-lg-4">
-						<h4 class="data-title bg-info p-2 text-uppercase bg-white ">perfil</h4>
-						<p class="text-uppercase font-weight-bold mt-3 text-justify">Lorem ipsum dolor sit amet,
-							consectetur adipisicing elit. Possimus, facere? Lorem ipsum dolor sit amet, consectetur
-							adipisicing elit. Ipsa est, fuga illo porro dolore amet?</p>
-					</div>
-					<div class="data-wrapper mb-3 mx-auto">
-						<h4 class="data-title bg-info p-2 text-uppercase bg-white ">Experiencia</h4>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. | Month Day Year</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque id laudantium
-									velit reprehenderit rerum, magnam iusto assumenda illum commodi eligendi.</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque id laudantium
-									velit reprehenderit rerum, magnam iusto assumenda illum commodi eligendi.</li>
-							</ul>
-						</div>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. | Month Day Year</p>
-							<ul>
-								<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque id laudantium
-									velit reprehenderit rerum, magnam iusto assumenda illum commodi eligendi.</li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque id laudantium
-									velit reprehenderit rerum, magnam iusto assumenda illum commodi eligendi.</li>
-							</ul>
-						</div>
-					</div>
-					<div class="data-wrapper mb-3 mx-auto">
-						<h4 class="data-title bg-info p-2 text-uppercase bg-white ">Educación</h4>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. | Month Day Year</p>
-						</div>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. | Month Day Year</p>
-						</div>
-					</div>
-					<div class="data-wrapper mb-3 mx-auto">
-						<h4 class="data-title bg-info p-2 text-uppercase bg-white ">Habilidades</h4>
-						<div class="row">
-							<div class="col-12 col-lg-6">
-								<ul class="mb-0">
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-								</ul>
-							</div>
-							<div class="col-12 col-lg-6">
-								<ul class="mb-0">
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-									<li>Lorem ipsum dolor sit amet.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="data-wrapper mb-3 mx-auto">
-						<h4 class="data-title bg-info p-2 text-uppercase bg-white ">Reconocimientos</h4>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. <br>Month Day Year</p>
-						</div>
-						<div class="description-wrapper">
-							<p class="lead font-weight-bold font-italic mb-0">Lorem ipsum dolor sit amet.</p>
-							<p class="text-uppercase small">Lorem ipsum dolor sit amet. <br>Month Day Year</p>
-						</div>
-					</div>
-				</div>`
-
 
 /**
  * Esta función inserta un perfil de freelancer en index.html, por cada proposal en la base de datos
@@ -319,10 +113,6 @@ var projectProfilesHtml = `<div class="col-12 col-lg-4">
 function getProfiles() {
     console.log(purposesContent)
     $("#profiles-wrapper").empty();
-    /*Object.values(purposesContent).forEach(function(value){
-        console.log(value);
-        projectArray.push(value);
-    });*/
     $.each(purposesContent, function (key, value) {
         console.log(value);
         var projectName = value.projectName;

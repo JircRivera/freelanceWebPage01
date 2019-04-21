@@ -1,0 +1,22 @@
+Java script
+
+splice
+remove
+
+popper.js
+
+$(selector).val(0) /*extraer valor*/
+
+sci js
+
+
+como modificar diferentes lineas en vs-code
+
+
+firebase deploy
+
+database/reglas  -->  cambiar a true
+y también el archivo database.rules.json  --> cambiar a true
+firebase deploy
+
+
