@@ -1,16 +1,87 @@
-Java script
+###################
+##  Java script
+#################
+# Methods for Arrays
+push()      // insert a new element at the end of the array 
+splice()    // insert one or more elements in an specific index
+sort()      // sort the array
+reverse()   // invert the array order
+remove()    // remove an element
 
-splice
-remove
+# Methods for Objects
+Object  --> Property - Value
+student.name = "Jorge"
+
+
+###################
+##  jquery
+#################
+
+$().action()
+  \ ---------
+   \     \
+    \     Predicado
+     Sujeto --> Selector CSS
+
+# Tipos de selector
+$("#").doSomething()                       // por ID
+$(".").doSomething()                       // por Clase 
+$("tagname").doSomething()                 // por tagname
+$(".some-class:eq()").doSomething()        // por posicion
+$("#some-id .some-class").doSomething()    // por anidacion
+$("#some-id.some-class").doSomething()     // por conjuncion
+$("#some-id:hover").doSomething()          // por estado
+
+# Methods
+Para manipulacion de estilos, ocultar, mostrar, animar, 
+Para procesamiento de datos, 
+Para manipulacion de DOM para insertar elementos, reacomodar
+Para conexiones https
+
+Ejemplos:
+
+$("input").fadeOut()                    // Desaparecer todos los elementos input
+$("form *").fadeOut()                   // Desaparecer todos los elementos de la webPage
+$("form *").fadeIn()                    // Aparecer todos los elementos de la webPage
+$("form").css({background:"peru"})      // Aplicar CSS 
+$("form").addClass("p-3")               // Agregar padding con bootstrap
+$("form").removeClass("p-3")            // Quitar padding con bootstrap
+$("form").addClass("p-2 mt-2")          // Agregar padding y marging-top con bootstrap
+$("form").slideUp()                     // Animacion, desaparece de forma animada
+$("form").append()                     // Aagrega un elemento despues del ultimo nodo del DOM 
+
+#Acceder a la informacion de un objeto:
+
+$("#project-name").val()                // el metodo val(), sin argumentos, extrae el valor del elemento, es un getter
+$("#project-name").val("una cadena")    // el metodo val("argumento"), con argumentos, setea el valor del elemento, es un setter
+
+
+val projectName = $("#project-name").val()              // Se asigna a la variable "projectName" el valor del input "#project-name", del formulario "submitForm.html",
+val projectName = $("#project-name").val("Una cadena")  // Se setea el string "Una cadena" al input "#project-name"
+
+# Codigo para guardar el contenido de los inputs del formulario en un objeto
+
+var projectObject = {}  // cracion del objeto vacio
+var projectName = $("#project-name").val()      // asignacion del contenido del input a una variable
+var customerName = $("#customer-name").val()
+projectObject.projectName = projectName         // asignacion de la variable a la propiedad del objeto.
+projectObject.customerName = customerName
+
+
+
+
+
+
+
+
+
 
 popper.js
 
 $(selector).val(0) /*extraer valor*/
 
-sci js
+es6 js
 
-
-como modificar diferentes lineas en vs-code
 
 
 firebase deploy

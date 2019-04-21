@@ -3,20 +3,37 @@ var purposesReference = purposesDb.ref('purposesCollection/')
 var usersReference = purposesDb.ref('usersCollections/');
 var purposesContent;
 
-var someElement = $("#some-id");
+//#############################################################################
+//## Funciones Generales del Proyecto
+//###########################################################################
 
-//$("#")
-//$(".")
-//$("tagname")
-//$(".some-class:eq()")
-//$("#some-id .some-class")
-//$("#some-id.some-class")
-//$("#some-id:hover")
-//someElement.hide();
+/**
+ * Event Handler, que se dispara caundo detecta un cambio en algun valor de la 
+ * base de datos y actualiza las paginas "projectCatalog.html" y index.html
+ */
+purposesReference.on('value', function (snapshot) {
+    console.log(snapshot.val());
+    purposesContent = snapshot.val();
+    getPurposes();  // en "projectCatalog.html"
+    getProfiles();  // en "index.html"
+});
 
-//$(selector).val() /*extraer un valor*/
-//$(selector).val(some value) /*asignar un valor*/
 
+//#############################################################################
+//## Funciones para el formulario "submitForm.html"
+//###########################################################################
+
+/**
+ * Event Handler, para el formulario "submitForm.html"
+ */
+$("#submit-button").on("click", function () {
+    getFormData()
+})
+
+
+/**
+ * Esta funcion obtiene el contenido de los elementos "input" del formulario "submitForm.html"
+ */
 function getFormData() {
     var projectObject = {};
     var projectName = $("#project-name").val(); /*getter*/
@@ -36,33 +53,20 @@ function getFormData() {
     purposesReference.push(projectObject)
 }
 
-$("#submit-button").on("click", function () {
-    getFormData()
-})
+//#############################################################################
+//## Funciones para la pagina "projectCatalog.html"
+//###########################################################################
 
+/**
+ * Event Handler, para la pagina "projectCatalog.html"
+ */
 $("#get-purposes").on("click", function () {
     getPurposes();
 })
 
-
-var projectArray = [];
-
-var projectPurposeHtml = `<div class="col-lg-3">
-								<div class="card my-2">
-									<div class="card-body">
-										<h5 class="card-title">Desarrollo de sitio web</h5>
-										<h6 class="card-subtitle mb-2 text-muted">Israel Salinas Martínez</h6>
-										<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias distinctio debitis officia, impedit, quas libero architecto vel in quis illum beatae. Maxime laborum exercitationem, sapiente.</p>
-										<p>israel@kodemia.mx</p>
-										<p>5543788096</p>
-										<p>Habilidades requeridas: <span class="badge badge-pill badge-primary">HTML</span><span class="badge badge-pill badge-primary">CSS</span><span class="badge badge-pill badge-primary">JS</span></p>
-										<!--a href="#" class="card-link">Card link</a>
-										<a href="#" class="card-link">Another link</a-->
-									</div>
-								</div>
-							</div>`
-
-
+/**
+ * Esta funcion lee las propuestas en la base de datos y las despliega en pantalla
+ */
 function getPurposes() {
     console.log(purposesContent)
     $("#purposes-wrapper").empty();
@@ -91,21 +95,9 @@ function getPurposes() {
 }
 
 
-purposesReference.on('value', function (snapshot) {
-    console.log(snapshot.val());
-    purposesContent = snapshot.val();
-    getPurposes();
-    getProfiles();
-});
-
-/*var newPurposal = {
-    projectName: "New name",
-    projectDescription: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, dolores consequuntur voluptatem, cupiditate, dicta est consequatur quis ipsa quasi fuga obcaecati soluta corrupti assumenda unde odio recusandae facere molestiae?",
-    customerMail: "new@kodemia.mx",
-    customerPhone: "5545789645",
-    customerName: "new"
-}*/
-
+//#############################################################################
+//## Funciones para la pagina "index.html"
+//###########################################################################
 
 /**
  * Esta función inserta un perfil de freelancer en index.html, por cada proposal en la base de datos
